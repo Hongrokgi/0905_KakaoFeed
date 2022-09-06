@@ -19,7 +19,7 @@ public class MessageService extends HttpCallService{
     private static final String SEND_FAIL_MSG = "메시지 전송에 실패했습니다.";
     private static final String SUCCESS_CODE = "0"; // Kakao api 에서 return 하는 success_code 값.
     public boolean sendMessage(String accessToken) {
-        // 사용자 정의 템플릿은 template_id만 보내주면되는데..
+        // 사용자 정의 템플릿은 template_id만
 //        JSONObject templateObj = new JSONObject();
 //        templateObj.put("template_id","82472");
 
@@ -27,8 +27,14 @@ public class MessageService extends HttpCallService{
         header.set("Content-Type",APP_TYPE_URL_ENCODED);
         header.set("Authorization", "Bearer "+accessToken); // 두 개는 괜찮음  두 개에 template id만 담아서 httpCall
 
+        JSONObject argsObj = new JSONObject();
+//        argsObj.put("THU","https://ifh.cc/g/APBkvM.jpg");
+        argsObj.put("THU","http://211.111.12.130:9090/img/6a5f08164b3546fe96a15b65ae50019f.ab2c20ce.png");
+
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-        parameters.add("template_id", "82472");
+        parameters.add("template_id", "82493");
+        parameters.add("template_args",argsObj.toString());
+
 
 
         HttpEntity<?> messageRequestEntity = httpClientEntity(header, parameters);
