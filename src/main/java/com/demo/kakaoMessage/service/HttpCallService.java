@@ -27,6 +27,14 @@ public class HttpCallService {
             return new HttpEntity<>(params, requestHeaders);
         }
     }
+
+    public HttpEntity<?> httpClientEntity(Object params) {
+        if(params == null || "".equals(params)) {
+            return null;
+        }else {
+            return new HttpEntity<>(params);
+        }
+    }
     /*
     *   Http 요청 method
     *
@@ -52,4 +60,5 @@ public class HttpCallService {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.exchange(url, method, entity, String.class);
     }
+
 }
