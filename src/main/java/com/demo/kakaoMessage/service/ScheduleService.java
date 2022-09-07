@@ -24,7 +24,7 @@ public class ScheduleService {
     private final EntityManager em;
     private JPAQueryFactory queryFactory;
 
-    private final LoginService loginService;
+    private final MessageService messageService;
 
     // 30초마다 실행 fixedDelay = 3000
     @Scheduled(cron = "30 * * * * *")
@@ -38,7 +38,7 @@ public class ScheduleService {
         log.info("해야할 일 : " + tasks.size());
         log.info("****** task Done ******");
         if(tasks.size() != 0) {
-//           loginService.getLogin();
+           messageService.sendMessage("zU_2SvthEESEW85zYn9l7_q2owVosk4Uxb8gtlJiCj102gAAAYMXQK4r");
         }else {
             log.info("지금은 해당사항이 없습니다.");
         }
