@@ -1,4 +1,4 @@
-package com.demo.kakaoMessage.domain.domain;
+package com.demo.kakaoMessage.domain.dto;
 
 import com.demo.kakaoMessage.domain.entity.Body774;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -143,7 +143,7 @@ public class Body774DTO {
         private String workClothType;           // st_worker_uniform:worker uniform / st_common_clothing:ordinary clothing / st_office_uniform : office uniform / st_chef_uniform : chef uniform / st_medical_uniform : medical uniform / st_police_uniform : police uniform / st_firefighter_uniform : firefighter uniform / st_reflective_clothing : reflective clothing
     }
 
-    public Body774 toEntity(String cameraName, String channel, String deviceId, String eventsType, String snapId, String snapPath, String trigger) {
+    public Body774 toEntity(String cameraName, String channel, String deviceId, String eventsType, String snapId, String snapPath, String trigger, String sendYn) {
         return Body774.builder()
                 .cameraName(cameraName)
                 .channel(channel)
@@ -152,6 +152,7 @@ public class Body774DTO {
                 .snapId(snapId)
                 .snapPath(snapPath)
                 .trigger(trigger)
+                .sendYn(sendYn)
                 .build();
     }
 }

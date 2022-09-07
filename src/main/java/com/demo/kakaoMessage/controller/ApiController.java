@@ -1,10 +1,12 @@
 package com.demo.kakaoMessage.controller;
 
-import com.demo.kakaoMessage.domain.domain.Body774DTO;
+import com.demo.kakaoMessage.domain.dto.Body774DTO;
 import com.demo.kakaoMessage.domain.entity.Body774;
+import com.demo.kakaoMessage.service.PushService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class ApiController {
+
+    private final PushService pushService;
+
     @PostMapping("/push")
     public ResponseEntity<Void> PushData(MultipartHttpServletRequest request) throws Exception {
         log.info("===== Data Push =====");
@@ -39,26 +45,22 @@ public class ApiController {
                         log.info("useless Alarm");
                     }else if(eventsType.equals("390")) {
                         log.info("390 Alarm");
-                        Body774 body774 = body774DTO.toEntity(body774DTO.getCameraName(), body774DTO.getChannel(), body774DTO.getDeviceId(), body774DTO.getEventsType(), body774DTO.getSnapId(), body774DTO.getSnapPath(), body774DTO.getTrigger());
-                        System.out.println("body774 = " + body774);
+                        Body774 body774 = body774DTO.toEntity(body774DTO.getCameraName(), body774DTO.getChannel(), body774DTO.getDeviceId(), body774DTO.getEventsType(), body774DTO.getSnapId(), body774DTO.getSnapPath(), body774DTO.getTrigger(), "N");
+                        //pushService.save(body774);
                     }else if(eventsType.equals("394")) {
                         log.info("394 Alarm");
-                        Body774 body774 = body774DTO.toEntity(body774DTO.getCameraName(), body774DTO.getChannel(), body774DTO.getDeviceId(), body774DTO.getEventsType(), body774DTO.getSnapId(), body774DTO.getSnapPath(), body774DTO.getTrigger());
-                        System.out.println("body774 = " + body774);
+                        Body774 body774 = body774DTO.toEntity(body774DTO.getCameraName(), body774DTO.getChannel(), body774DTO.getDeviceId(), body774DTO.getEventsType(), body774DTO.getSnapId(), body774DTO.getSnapPath(), body774DTO.getTrigger(),"N");
                     }else if(eventsType.equals("389")) {
                         log.info("389 Alarm");
-                        Body774 body774 = body774DTO.toEntity(body774DTO.getCameraName(), body774DTO.getChannel(), body774DTO.getDeviceId(), body774DTO.getEventsType(), body774DTO.getSnapId(), body774DTO.getSnapPath(), body774DTO.getTrigger());
-                        System.out.println("body774 = " + body774);
+                        Body774 body774 = body774DTO.toEntity(body774DTO.getCameraName(), body774DTO.getChannel(), body774DTO.getDeviceId(), body774DTO.getEventsType(), body774DTO.getSnapId(), body774DTO.getSnapPath(), body774DTO.getTrigger(),"N");
                     }
                 }
-
                 break;
             case 775:
                 log.info("This is Heartbeat Alarm");
                 break;
         }
 
-//`case1 : events_type ="394" -> length 5개 , msg_id 774 case2 : events_type = "" -> length 2개, msg_id=774 case3: events_type = null -> length 4개 , msg_id= 775
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
