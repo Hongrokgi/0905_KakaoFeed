@@ -28,8 +28,8 @@ public class MessageService extends HttpCallService{
         header.set("Authorization", "Bearer "+accessToken); // 두 개는 괜찮음  두 개에 template id만 담아서 httpCall
 
         JSONObject argsObj = new JSONObject();
-//        argsObj.put("THU","https://ifh.cc/g/APBkvM.jpg");
-        argsObj.put("THU","http://211.111.12.130:9090/img/6a5f08164b3546fe96a15b65ae50019f.ab2c20ce.png");
+        argsObj.put("THU","https://ifh.cc/g/APBkvM.jpg");
+//        argsObj.put("THU","http://211.111.12.130:9090/img/6a5f08164b3546fe96a15b65ae50019f.ab2c20ce.png");
 
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("template_id", "82493");
